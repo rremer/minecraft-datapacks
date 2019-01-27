@@ -1,0 +1,123 @@
+{
+	"$schema": "${filtered.json-schema.url}",
+	"title": "Minecraft 1.13.2 Draft ${project.version}",
+	"description": "Minecraft datapack schema for version 1.13.2",
+	"type": "object",
+	"definitions": {
+		"rewards": {
+			"type": "object",
+			"properties": {
+				"recipes": {
+					"description": "String crafting recipes.",
+					"type": "array"
+				},
+				"experience": {
+					"description": "Amount of experience to give.",
+					"type": "number"
+				},
+				"function": {
+					"description": "An mcfunction to run..",
+					"type": "string"
+				},
+				"loot": {
+					"description": "Loot tables to pull from.",
+					"type": "array"
+				}
+			}
+		},
+		"criteria_name": {
+			"type": "object",
+			"properties": {
+				"trigger": {
+					"description": "Function name of the trigger e.g. minecraft:changed_dimension.",
+					"type": "string"
+				},
+				"conditions": {
+					"description": "List of json conditions which must be met to trigger.",
+					"type": "array"
+				}
+			},
+			"criteria": {
+				"type": "object",
+				"criteria_name": {
+					"$ref": "${filtered.minecraft-schema.url}#/definitions/criteria_name"
+				}
+			}
+		},
+		"icon": {
+			"type": "object",
+			"properties": {
+				"item": {
+					"description": "Path to an item icon",
+					"type": "string"
+				},
+				"nbt": {
+					"description": "NBT tag data for the icon",
+					"type": "string"
+				}
+			},
+            "required": ["item"]
+		},
+		"display": {
+			"type": "object",
+			"properties": {
+				"icon": {
+					"$ref": "${filtered.minecraft-schema.url}#/definitions/icon"
+				},
+				"title": {
+					"description": "The title to display.",
+					"type": "string"
+				},
+				"frame": {
+					"description": "The frame for the icon.",
+					"type": "string"
+				},
+				"background": {
+					"description": "The path to a directory for a background.",
+					"type": "string"
+				},
+				"description": {
+					"description": "The detailed description to display.",
+					"type": "string"
+				},
+				"show_toast": {
+					"description": "Display client-side pop-up on completion of criteria.",
+					"type": "boolean"
+				},
+				"announce_to_chat": {
+					"description": "Chat to server upon completion of criteria.",
+					"type": "boolean"
+				},
+				"hidden": {
+					"description": "Disable display on menu screen..",
+					"type": "boolean"
+				}
+			},
+            "required": ["title","description"]
+		},
+		"advancement": {
+			"type": "object",
+			"properties": {
+				"display": {
+					"$ref": "${filtered.minecraft-schema.url}#/definitions/display"
+				},
+				"parent": {
+					"description": "The parent advancement in the tree.",
+					"type": "string"
+				},
+				"criteria": {
+					"$ref": "${filtered.minecraft-schema.url}#/definitions/criteria_name"
+				},
+				"requirements": {
+                    "description": "List of required criteria, if some are optional.",
+					"type": ["string"]
+				},
+				"rewards": {
+					"$ref": "${filtered.minecraft-schema.url}#/definitions/rewards"
+				}
+			},
+            "required": ["criteria"]
+
+		}
+	}
+}
