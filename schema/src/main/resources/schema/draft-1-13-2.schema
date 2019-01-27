@@ -66,7 +66,7 @@
 				},
 				"title": {
 					"description": "The title to display.",
-					"type": "string"
+					"type": ["string","object"]
 				},
 				"frame": {
 					"description": "The frame for the icon.",
@@ -78,7 +78,7 @@
 				},
 				"description": {
 					"description": "The detailed description to display.",
-					"type": "string"
+					"type": ["string","object"]
 				},
 				"show_toast": {
 					"description": "Display client-side pop-up on completion of criteria.",
