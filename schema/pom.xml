@@ -46,29 +46,29 @@
         <configuration>
           <validations>
             <validation>
-                <directory>${project.basedir}/src/test/resources/advancements</directory>
-                <jsonSchema>${filtered.minecraft-schema.test.path}/advancement.schema</jsonSchema>
+              <directory>${project.basedir}/src/test/resources/advancements</directory>
+              <jsonSchema>${filtered.minecraft-schema.test.path}/advancement.schema</jsonSchema>
               <includes>
                 <include>**/*.json</include>
               </includes>
             </validation>
             <validation>
-                <directory>${project.basedir}/src/test/resources/recipes</directory>
-                <jsonSchema>${filtered.minecraft-schema.test.path}/recipe.schema</jsonSchema>
+              <directory>${project.basedir}/src/test/resources/recipes</directory>
+              <jsonSchema>${filtered.minecraft-schema.test.path}/recipe.schema</jsonSchema>
               <includes>
                 <include>**/*.json</include>
               </includes>
             </validation>
             <validation>
-                <directory>${project.basedir}/src/test/resources/loot_tables</directory>
-                <jsonSchema>${filtered.minecraft-schema.test.path}/loot_table.schema</jsonSchema>
+              <directory>${project.basedir}/src/test/resources/loot_tables</directory>
+              <jsonSchema>${filtered.minecraft-schema.test.path}/loot_table.schema</jsonSchema>
               <includes>
                 <include>**/*.json</include>
               </includes>
             </validation>
             <validation>
-                <directory>${project.basedir}/src/test/resources/tags</directory>
-                <jsonSchema>${filtered.minecraft-schema.test.path}/tag.schema</jsonSchema>
+              <directory>${project.basedir}/src/test/resources/tags</directory>
+              <jsonSchema>${filtered.minecraft-schema.test.path}/tag.schema</jsonSchema>
               <includes>
                 <include>**/*.json</include>
               </includes>

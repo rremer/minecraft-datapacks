@@ -11,14 +11,14 @@
   <description>A collection of composable datapacks for Minecraft.</description>
   <url>https://github.com/rremer/minecraft-datapacks</url>
 
+  <modules>
+    <module>schema</module>
+  </modules>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.resources.dir>${project.build.resources[0].directory}</project.resources.dir>
 
   </properties>
-
-  <modules>
-    <module>schema</module>
-  </modules>
 
 </project>

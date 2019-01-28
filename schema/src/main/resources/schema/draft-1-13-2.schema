@@ -56,7 +56,9 @@
 					"type": "string"
 				}
 			},
-            "required": ["item"]
+			"required": [
+				"item"
+			]
 		},
 		"display": {
 			"type": "object",
@@ -66,7 +68,10 @@
 				},
 				"title": {
 					"description": "The title to display.",
-					"type": ["string","object"]
+					"type": [
+						"string",
+						"object"
+					]
 				},
 				"frame": {
 					"description": "The frame for the icon.",
@@ -78,7 +83,10 @@
 				},
 				"description": {
 					"description": "The detailed description to display.",
-					"type": ["string","object"]
+					"type": [
+						"string",
+						"object"
+					]
 				},
 				"show_toast": {
 					"description": "Display client-side pop-up on completion of criteria.",
@@ -93,7 +101,10 @@
 					"type": "boolean"
 				}
 			},
-            "required": ["title","description"]
+			"required": [
+				"title",
+				"description"
+			]
 		},
 		"advancement": {
 			"type": "object",
@@ -109,242 +120,308 @@
 					"$ref": "${filtered.minecraft-schema.url}#/definitions/criteria_name"
 				},
 				"requirements": {
-                    "description": "List of required criteria, if some are optional.",
-					"type": ["string"]
+					"description": "List of required criteria, if some are optional.",
+					"type": [
+						"string"
+					]
 				},
 				"rewards": {
 					"$ref": "${filtered.minecraft-schema.url}#/definitions/rewards"
 				}
 			},
-            "required": ["criteria"]
+			"required": [
+				"criteria"
+			]
 		},
 		"item": {
 			"type": "object",
 			"properties": {
-                "item": {
-                    "description": "A single item, e.g. minecraft:sand.",
-                    "type": "string"
-                },
-                "tag": {
-                    "description": "A tag (a.k.a Ore Dictionary) for this ingredient, e.g. minecraft:planks",
+				"item": {
+					"description": "A single item, e.g. minecraft:sand.",
 					"type": "string"
-                }
+				},
+				"tag": {
+					"description": "A tag (a.k.a Ore Dictionary) for this ingredient, e.g. minecraft:planks",
+					"type": "string"
+				}
 			},
-            "required": ["item"]
+			"required": [
+				"item"
+			]
 		},
 		"item_stack": {
 			"type": "object",
 			"properties": {
-                "item": {
-                    "description": "A single item, e.g. minecraft:sand.",
-                    "type": "string"
-                },
-                "count": {
-                    "description": "The number of this item.",
+				"item": {
+					"description": "A single item, e.g. minecraft:sand.",
+					"type": "string"
+				},
+				"count": {
+					"description": "The number of this item.",
 					"type": "number"
-                }
+				}
 			},
-            "required": ["item","count"]
+			"required": [
+				"item",
+				"count"
+			]
 		},
 		"recipe": {
 			"type": "object",
 			"properties": {
 				"type": {
-                    "description": "The type of recipe.",
+					"description": "The type of recipe.",
 					"type": "string",
-                    "enum": ["blasting","campfire","crafting_shaped","crafting_shapeless","smelting","smoking","stonecutting","crafting_special_*"]
+					"enum": [
+						"blasting",
+						"campfire",
+						"crafting_shaped",
+						"crafting_shapeless",
+						"smelting",
+						"smoking",
+						"stonecutting",
+						"crafting_special_*"
+					]
 				},
-                "group": {
-                    "description": "String to group/tab in recipe book by.",
-                    "type": "string"
-                },
-                "pattern": {
-                    "description": "Array of crafting ingredients which comprise the recipe.",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "key": {
-                    "description": "A legend of symbols used in pattern field to map to ingredients/items.",
-                    "type": "object"
-                },
-                "ingredient": {
+				"group": {
+					"description": "String to group/tab in recipe book by.",
+					"type": "string"
+				},
+				"pattern": {
+					"description": "Array of crafting ingredients which comprise the recipe.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"key": {
+					"description": "A legend of symbols used in pattern field to map to ingredients/items.",
+					"type": "object"
+				},
+				"ingredient": {
 					"$ref": "${filtered.minecraft-schema.url}#/definitions/item"
-                },
-                "ingredients": {
-                    "type": "array",
-                    "items": { 
-					  "$ref": "${filtered.minecraft-schema.url}#/definitions/item"
-                    }
-                },
-                "result": {
-                    "anyOf": [
-					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/item" },
-					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/item_stack" },
-                      { "type": "string" }
-                      ]
-                },
-                "experience": {
-                    "description": "The amount of XP to grant the player.",
-                    "type": "number"
-                },
-                "cookingtime": {
-                    "description": "For non crafting_shape* recipes, the time in game ticks crafting takes to complete..",
-                    "type": "number"
-                }
+				},
+				"ingredients": {
+					"type": "array",
+					"items": {
+						"$ref": "${filtered.minecraft-schema.url}#/definitions/item"
+					}
+				},
+				"result": {
+					"anyOf": [
+						{
+							"$ref": "${filtered.minecraft-schema.url}#/definitions/item"
+						},
+						{
+							"$ref": "${filtered.minecraft-schema.url}#/definitions/item_stack"
+						},
+						{
+							"type": "string"
+						}
+					]
+				},
+				"experience": {
+					"description": "The amount of XP to grant the player.",
+					"type": "number"
+				},
+				"cookingtime": {
+					"description": "For non crafting_shape* recipes, the time in game ticks crafting takes to complete..",
+					"type": "number"
+				}
 			},
-            "required": ["type","group","result"]
+			"required": [
+				"type",
+				"group",
+				"result"
+			]
 		},
 		"loot_table_roll": {
-            "description": "Loot table change multiplier.",
+			"description": "Loot table change multiplier.",
 			"type": "object",
 			"properties": {
 				"min": {
 					"type": "number"
-                },
+				},
 				"max": {
 					"type": "number"
-                }
+				}
 			},
-            "required": ["min","max"]
+			"required": [
+				"min",
+				"max"
+			]
 		},
 		"loot_table_pool": {
 			"type": "object",
 			"properties": {
 				"conditions": {
-                    "description": "List Loot Table conditions.",
+					"description": "List Loot Table conditions.",
 					"type": "array",
-                    "items": [
-                      { "type": "object" }
-                    ]
-                },
-                "rolls": {
-                    "description": "Chance multiplier for a loot entry.",
-                    "anyOf": [
-					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll" },
-                      { "type": "number" }
-                      ]
-                },
-                "bonus_rolls": {
-                    "description": "Chance multiplier affected by looting/luck.",
-                    "anyOf": [
-					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll" },
-                      { "type": "number" }
-                      ]
-                },
-                "entries": {
-                    "description": "List of lootables.",
+					"items": [
+						{
+							"type": "object"
+						}
+					]
+				},
+				"rolls": {
+					"description": "Chance multiplier for a loot entry.",
+					"anyOf": [
+						{
+							"$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll"
+						},
+						{
+							"type": "number"
+						}
+					]
+				},
+				"bonus_rolls": {
+					"description": "Chance multiplier affected by looting/luck.",
+					"anyOf": [
+						{
+							"$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll"
+						},
+						{
+							"type": "number"
+						}
+					]
+				},
+				"entries": {
+					"description": "List of lootables.",
 					"type": "array",
-                    "items": [
-                      { "type": "object" }
-                    ]
-                }
+					"items": [
+						{
+							"type": "object"
+						}
+					]
+				}
 			},
-            "required": ["rolls","entries"]
+			"required": [
+				"rolls",
+				"entries"
+			]
 		},
 		"loot_table_entry": {
 			"type": "object",
 			"properties": {
 				"type": {
-                    "enum": ["item","loot_table","empty"]
-                },
-                "condition": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "weight": {
-                    "description": "Priority chance an entry is selected from a table.",
-                    "type": "number"
-                },
-                "quality": {
-                    "description": "Priority modifier based on looting/luck.",
-                    "type": "number"
-                },
-                "functions": {
-                    "description": "Functions to apply to item stacks after selection and beore construction.",
-                    "type": "array",
-                    "items": [
-                        { "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_function" }
-                    ]
-                }
+					"enum": [
+						"item",
+						"loot_table",
+						"empty"
+					]
+				},
+				"condition": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"weight": {
+					"description": "Priority chance an entry is selected from a table.",
+					"type": "number"
+				},
+				"quality": {
+					"description": "Priority modifier based on looting/luck.",
+					"type": "number"
+				},
+				"functions": {
+					"description": "Functions to apply to item stacks after selection and beore construction.",
+					"type": "array",
+					"items": [
+						{
+							"$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_function"
+						}
+					]
+				}
 			},
-            "required": ["type","weight"]
+			"required": [
+				"type",
+				"weight"
+			]
 		},
 		"loot_table": {
 			"type": "object",
 			"properties": {
 				"pools": {
-                    "description": "List of loot table pools",
+					"description": "List of loot table pools",
 					"type": "array",
-                    "items": [
-                        { "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_pool" }
-                    ]
-                }
+					"items": [
+						{
+							"$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_pool"
+						}
+					]
+				}
 			},
-            "required": ["pools"]
+			"required": [
+				"pools"
+			]
 		},
-        "loot_table_function": {
-            "description": "Built-in functions to apply to loot table item stacks.",
-            "type": "object",
+		"loot_table_function": {
+			"description": "Built-in functions to apply to loot table item stacks.",
+			"type": "object",
 			"properties": {
 				"function": {
-                    "type": "object",
-                    "anyOf": [
-					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/function_set_nbt" },
-					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/function_set_count" }
-                      ]
-
-                },
-                "conditions": {
-                    "type": "array",
-                    "items": [
-                    { "type": "string" }
-                    ]
-                }
-            }
-        },
-        "function_set_nbt": {
-            "description": "Set tag data on an item stack.",
-            "type": "object",
-            "properties": {
-                "function": {
-                    "type": "string"
-                },
-                "tag": {
-                    "type": "string"
-                }
-            }
-        },
-        "function_set_count": {
-            "description": "Set number of items in a stack.",
-            "type": "object",
-            "properties": {
-                "function": {
-                    "type": "string"
-                },
-                "count": {
-					  "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll"
-                }
-            }
-        },
-        "tag": {
-            "description": "An ingredient or item stack tag.",
-            "type": "object",
-            "properties": {
-                "replace": {
-                    "description": "False to append tags, True to override vanilla tags.",
-                    "type": "boolean"
-                },
-                "values": {
-                    "type": "array",
-                    "items": [
-                        { "type": "string" }
-                    ]
-                }
-            }
-        }
+					"type": "object",
+					"anyOf": [
+						{
+							"$ref": "${filtered.minecraft-schema.url}#/definitions/function_set_nbt"
+						},
+						{
+							"$ref": "${filtered.minecraft-schema.url}#/definitions/function_set_count"
+						}
+					]
+				},
+				"conditions": {
+					"type": "array",
+					"items": [
+						{
+							"type": "string"
+						}
+					]
+				}
+			}
+		},
+		"function_set_nbt": {
+			"description": "Set tag data on an item stack.",
+			"type": "object",
+			"properties": {
+				"function": {
+					"type": "string"
+				},
+				"tag": {
+					"type": "string"
+				}
+			}
+		},
+		"function_set_count": {
+			"description": "Set number of items in a stack.",
+			"type": "object",
+			"properties": {
+				"function": {
+					"type": "string"
+				},
+				"count": {
+					"$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll"
+				}
+			}
+		},
+		"tag": {
+			"description": "An ingredient or item stack tag.",
+			"type": "object",
+			"properties": {
+				"replace": {
+					"description": "False to append tags, True to override vanilla tags.",
+					"type": "boolean"
+				},
+				"values": {
+					"type": "array",
+					"items": [
+						{
+							"type": "string"
+						}
+					]
+				}
+			}
+		}
 	}
 }
