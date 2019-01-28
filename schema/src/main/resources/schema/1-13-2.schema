@@ -386,7 +386,10 @@
 			"type": "object",
 			"properties": {
 				"function": {
-					"type": "string"
+					"type": "string",
+					"enum": [
+						"set_nbt"
+					]
 				},
 				"tag": {
 					"type": "string"
@@ -398,10 +401,93 @@
 			"type": "object",
 			"properties": {
 				"function": {
-					"type": "string"
+					"type": "string",
+					"enum": [
+						"set_count"
+					]
 				},
 				"count": {
 					"$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll"
+				}
+			}
+		},
+		"function_enchant_randomly": {
+			"description": "Enchants an item with a random enchant of random level.",
+			"type": "object",
+			"properties": {
+				"function": {
+					"type": "string",
+					"enum": [
+						"enchant_randomly"
+					]
+				},
+				"enchantments": {
+					"type": "array",
+					"items": [
+						{
+							"$ref": "${filtered.minecraft-schema.url}#/definitions/enchantment"
+						}
+					]
+				}
+			}
+		},
+		"function_enchant_with_levels": {
+			"description": "Enchants an item with a random enchant of a specific level.",
+			"type": "object",
+			"properties": {
+				"function": {
+					"type": "string",
+					"enum": [
+						"enchant_with_levels"
+					]
+				},
+				"treasure": {
+					"description": "Whether to use enchantments not found on the normal tables.",
+					"type": "boolean",
+					"levels": {
+						"anyOf": [
+							{
+								"type": "number"
+							},
+							{
+								"$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll"
+							}
+						]
+					}
+				}
+			}
+		},
+		"function_exploration_map": {
+			"description": "Converts an empty map to lead to a point of interest.",
+			"type": "object",
+			"properties": {
+				"function": {
+					"type": "string",
+					"enum": [
+						"exploration_map"
+					]
+				},
+				"destination": {
+					"description": "The name of a structure type to locate (e.g. /locate).",
+					"type": "string"
+				},
+				"decoration": {
+					"description": "The map icon to use.",
+					"$ref": "${filtered.minecraft-schema.url}#/definitions/map_icon"
+				},
+				"zoom": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 4
+				},
+				"search_radius": {
+					"description": "Radius in chunks to search for a structure from the map.",
+					"type": "number",
+					"minimum": 0
+				},
+				"skip_existing_chunks": {
+					"description": "Whether to ignore structures in visited chunks.",
+					"type": "boolean"
 				}
 			}
 		},
@@ -438,6 +524,78 @@
 					"type": "string"
 				}
 			}
+		},
+		"enchantment": {
+			"type": "string",
+			"enum": [
+				"protection",
+				"fire_protection",
+				"feather_falling",
+				"blast_protection",
+				"projectile_protection",
+				"thorns",
+				"respiration",
+				"depth_strider",
+				"aqua_affinity",
+				"sharpness",
+				"smite",
+				"bane_of_arthropods",
+				"knockback",
+				"fire_aspect",
+				"looting",
+				"efficiency",
+				"silk_touch",
+				"unbreaking",
+				"fortune",
+				"power",
+				"punch",
+				"flame",
+				"infinity",
+				"luck_of_the_sea",
+				"lure",
+				"frost_walker",
+				"mending",
+				"binding_curse",
+				"vanishing_curse",
+				"impaling",
+				"riptide",
+				"loyalty",
+				"channeling",
+				"sweeping"
+			]
+		},
+		"map_icon": {
+			"description": "An icon to mark a position on a map.",
+			"type": "string",
+			"enum": [
+				"player",
+				"frame",
+				"red_marker",
+				"blue_marker",
+				"target_x",
+				"target_point",
+				"player_off_map",
+				"player_off_limits",
+				"mansion",
+				"monument",
+				"red_x",
+				"banner_white",
+				"banner_orange",
+				"banner_magenta",
+				"banner_light_blue",
+				"banner_yellow",
+				"banner_lime",
+				"banner_pink",
+				"banner_gray",
+				"banner_light_gray",
+				"banner_cyan",
+				"banner_purple",
+				"banner_blue",
+				"banner_brown",
+				"banner_green",
+				"banner_red",
+				"banner_black"
+			]
 		}
 	}
 }
