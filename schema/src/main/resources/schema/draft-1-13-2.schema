@@ -329,6 +329,22 @@
 					  "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll"
                 }
             }
+        },
+        "tag": {
+            "description": "An ingredient or item stack tag.",
+            "type": "object",
+            "properties": {
+                "replace": {
+                    "description": "False to append tags, True to override vanilla tags.",
+                    "type": "boolean"
+                },
+                "values": {
+                    "type": "array",
+                    "items": [
+                        { "type": "string" }
+                    ]
+                }
+            }
         }
 	}
 }
