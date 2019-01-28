@@ -422,6 +422,22 @@
 					]
 				}
 			}
+		},
+		"mcmeta": {
+			"description": "Datapack metadata.",
+			"type": "object",
+			"properties": {
+				"pack_format": {
+					"description": "1 for 1.6-1.8, 2 for 1.9-1.10, 3 for 1.11-1.12, 4 for 1.13+.",
+					"type": "number",
+					"minimum": 1,
+					"maximum": 4
+				},
+				"description": {
+					"description": "Yodawg, this field should have a description of the datpack.",
+					"type": "string"
+				}
+			}
 		}
 	}
 }

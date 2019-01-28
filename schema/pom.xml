@@ -73,6 +73,13 @@
                 <include>**/*.json</include>
               </includes>
             </validation>
+            <validation>
+              <directory>${project.basedir}/src/test/resources/mcmeta</directory>
+              <jsonSchema>${filtered.minecraft-schema.test.path}/mcmeta.schema</jsonSchema>
+              <includes>
+                <include>**/*.mcmeta</include>
+              </includes>
+            </validation>
           </validations>
         </configuration>
       </plugin>
