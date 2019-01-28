@@ -117,7 +117,84 @@
 				}
 			},
             "required": ["criteria"]
-
+		},
+		"item": {
+			"type": "object",
+			"properties": {
+                "item": {
+                    "description": "A single item, e.g. minecraft:sand.",
+                    "type": "string"
+                },
+                "tag": {
+                    "description": "A tag (a.k.a Ore Dictionary) for this ingredient, e.g. minecraft:planks",
+					"type": "string"
+                }
+			},
+            "required": ["item"]
+		},
+		"item_stack": {
+			"type": "object",
+			"properties": {
+                "item": {
+                    "description": "A single item, e.g. minecraft:sand.",
+                    "type": "string"
+                },
+                "count": {
+                    "description": "The number of this item.",
+					"type": "number"
+                }
+			},
+            "required": ["item","count"]
+		},
+		"recipe": {
+			"type": "object",
+			"properties": {
+				"type": {
+                    "description": "The type of recipe.",
+					"type": "string",
+                    "enum": ["blasting","campfire","crafting_shaped","crafting_shapeless","smelting","smoking","stonecutting","crafting_special_*"]
+				},
+                "group": {
+                    "description": "String to group/tab in recipe book by.",
+                    "type": "string"
+                },
+                "pattern": {
+                    "description": "Array of crafting ingredients which comprise the recipe.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "key": {
+                    "description": "A legend of symbols used in pattern field to map to ingredients/items.",
+                    "type": "object"
+                },
+                "ingredient": {
+					"$ref": "${filtered.minecraft-schema.url}#/definitions/item"
+                },
+                "ingredients": {
+                    "type": "array",
+                    "items": { 
+					  "$ref": "${filtered.minecraft-schema.url}#/definitions/item"
+                    }
+                },
+                "result": {
+                    "anyOf": [
+					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/item" },
+					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/item_stack" },
+                      { "type": "string" }
+                      ]
+                },
+                "experience": {
+                    "description": "The amount of XP to grant the player.",
+                    "type": "number"
+                },
+                "cookingtime": {
+                    "description": "For non crafting_shape* recipes, the time in game ticks crafting takes to complete..",
+                    "type": "number"
+                }
+			},
+            "required": ["type","group","result"]
 		}
 	}
 }
