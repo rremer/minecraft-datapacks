@@ -195,6 +195,140 @@
                 }
 			},
             "required": ["type","group","result"]
-		}
+		},
+		"loot_table_roll": {
+            "description": "Loot table change multiplier.",
+			"type": "object",
+			"properties": {
+				"min": {
+					"type": "number"
+                },
+				"max": {
+					"type": "number"
+                }
+			},
+            "required": ["min","max"]
+		},
+		"loot_table_pool": {
+			"type": "object",
+			"properties": {
+				"conditions": {
+                    "description": "List Loot Table conditions.",
+					"type": "array",
+                    "items": [
+                      { "type": "object" }
+                    ]
+                },
+                "rolls": {
+                    "description": "Chance multiplier for a loot entry.",
+                    "anyOf": [
+					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll" },
+                      { "type": "number" }
+                      ]
+                },
+                "bonus_rolls": {
+                    "description": "Chance multiplier affected by looting/luck.",
+                    "anyOf": [
+					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll" },
+                      { "type": "number" }
+                      ]
+                },
+                "entries": {
+                    "description": "List of lootables.",
+					"type": "array",
+                    "items": [
+                      { "type": "object" }
+                    ]
+                }
+			},
+            "required": ["rolls","entries"]
+		},
+		"loot_table_entry": {
+			"type": "object",
+			"properties": {
+				"type": {
+                    "enum": ["item","loot_table","empty"]
+                },
+                "condition": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "weight": {
+                    "description": "Priority chance an entry is selected from a table.",
+                    "type": "number"
+                },
+                "quality": {
+                    "description": "Priority modifier based on looting/luck.",
+                    "type": "number"
+                },
+                "functions": {
+                    "description": "Functions to apply to item stacks after selection and beore construction.",
+                    "type": "array",
+                    "items": [
+                        { "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_function" }
+                    ]
+                }
+			},
+            "required": ["type","weight"]
+		},
+		"loot_table": {
+			"type": "object",
+			"properties": {
+				"pools": {
+                    "description": "List of loot table pools",
+					"type": "array",
+                    "items": [
+                        { "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_pool" }
+                    ]
+                }
+			},
+            "required": ["pools"]
+		},
+        "loot_table_function": {
+            "description": "Built-in functions to apply to loot table item stacks.",
+            "type": "object",
+			"properties": {
+				"function": {
+                    "type": "object",
+                    "anyOf": [
+					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/function_set_nbt" },
+					  { "$ref": "${filtered.minecraft-schema.url}#/definitions/function_set_count" }
+                      ]
+
+                },
+                "conditions": {
+                    "type": "array",
+                    "items": [
+                    { "type": "string" }
+                    ]
+                }
+            }
+        },
+        "function_set_nbt": {
+            "description": "Set tag data on an item stack.",
+            "type": "object",
+            "properties": {
+                "function": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
+        "function_set_count": {
+            "description": "Set number of items in a stack.",
+            "type": "object",
+            "properties": {
+                "function": {
+                    "type": "string"
+                },
+                "count": {
+					  "$ref": "${filtered.minecraft-schema.url}#/definitions/loot_table_roll"
+                }
+            }
+        }
 	}
 }

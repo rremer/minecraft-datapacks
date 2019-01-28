@@ -59,6 +59,13 @@
                 <include>**/*.json</include>
               </includes>
             </validation>
+            <validation>
+                <directory>${project.basedir}/src/test/resources/loot_tables</directory>
+                <jsonSchema>${filtered.minecraft-schema.test.path}/loot_table.schema</jsonSchema>
+              <includes>
+                <include>**/*.json</include>
+              </includes>
+            </validation>
           </validations>
         </configuration>
       </plugin>
