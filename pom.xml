@@ -1,24 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.rremer</groupId>
-  <artifactId>minecraft-datapacks</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <parent>
+        <groupId>com.github.rremer</groupId>
+        <artifactId>maven-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
 
-  <name>Minecraft Datapacks</name>
-  <description>A collection of composable datapacks for Minecraft.</description>
-  <url>https://github.com/rremer/minecraft-datapacks</url>
+    <groupId>com.github.rremer</groupId>
+    <artifactId>minecraft-datapacks-parent</artifactId>
+    <version>1.13.2-1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <modules>
-    <module>schema</module>
-  </modules>
+    <name>Minecraft Datapacks Parent</name>
+    <description>Parent to collection of composable datapacks for Minecraft.</description>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.resources.dir>${project.build.resources[0].directory}</project.resources.dir>
+    <modules>
+        <module>moar-dyes</module>
+    </modules>
 
-  </properties>
+    <properties>
+        <parameter.disable.semantic.versioning>true</parameter.disable.semantic.versioning>
+        <path.schema>${project.build.directory}/classes/schema</path.schema>
+        <scm.url>https://github.com/rremer/minecraft-datapacks</scm.url>
+        <version.json-schema-validator>1.2.0</version.json-schema-validator>
+        <version.maven-dependency-plugin>3.1.1</version.maven-dependency-plugin>
+        <version.minecraft-datapack-schema>1.13.2-1</version.minecraft-datapack-schema>
+    </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${version.maven-dependency-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>process-test-resources</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifact>
+                                    <groupId>com.github.rremer</groupId>
+                                    <artifactId>minecraft-datapack-schema</artifactId>
+                                    <version>${version.minecraft-datapack-schema}</version>
+                                </artifact>
+                            </artifactItems>
+                            <includes>**/*.schema</includes>
+                            <outputDirectory>${path.schema}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <url>${scm.url}</url>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>rremer</id>
+            <email>royceremer@gmail.com</email>
+            <timezone>America/Los_Angeles</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git:${scm.url}.git</connection>
+        <developerConnection>scm:git:git:${scm.url}.git</developerConnection>
+        <url>${scm.url}</url>
+    </scm>
+
+    <issueManagement>
+        <system>Github Issues</system>
+        <url>${scm.url}/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>travis</system>
+        <url>https://travis-ci.org/rremer/minecraft-datapacks</url>
+    </ciManagement>
 </project>

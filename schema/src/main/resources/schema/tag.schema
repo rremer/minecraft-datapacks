@@ -1,6 +1,0 @@
-{
-	"$schema": "${filtered.json-schema.url}",
-	"title": "Minecraft Tag 1.13.2 Draft ${project.version}",
-	"description": "Minecraft datapack Tag object schema for version 1.13.2",
-	"$ref": "${filtered.minecraft-schema.url}#/definitions/tag"
-}
